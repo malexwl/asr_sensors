@@ -1,9 +1,0 @@
-FROM mysql:latest
-
-ENV MYSQL_ROOT_PASSWORD=@myRootPassword@
-ENV MYSQL_USER=dbuser
-ENV MYSQL_PASSWORD=@mySqlPassword@
-
-ENV MYSQL_DATABASE=asr
-
-EXPOSE 3306

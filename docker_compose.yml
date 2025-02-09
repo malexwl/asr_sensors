@@ -1,11 +1,11 @@
 services:
-  mysql:
+  mysqldb:
     container_name: 'my-sql-server'
     image: 'mysql:latest'
     environment:
       - 'MYSQL_DATABASE=asr'
-      - 'MYSQL_PASSWORD=@mySqlPassword@'
-      - 'MYSQL_ROOT_PASSWORD=@myRootPassword@'
+      - 'MYSQL_PASSWORD=mySqlPassword'
+      - 'MYSQL_ROOT_PASSWORD=myRootPassword'
       - 'MYSQL_USER=dbuser'
     ports:
       - '3306:3306'
@@ -15,11 +15,10 @@ services:
     container_name: asr_sensors
     image: asr_sensors:latest
     environment:
-      - 'DATABASE_URL=jdbc:mysql://mysql:3306/asr?autoReconnect=true&useSSL=false'
-      - 'DATABASE_USERNAME=dbuser'
-      - 'DATABASE_PASSWORD=@mySqlPassword@'
-#      - 'SPRING_DATA_SOURCE_URL=jdbc:mysql://mysql:3306/asr?autoReconnect=true&useSSL=false'
+      SPRING_DATA_SOURCE_URL: jdbc:mysql://mysqldb:3306/asr?autoReconnect=true&useSSL=false
+      SPRING_DATA_SOURCE_USERNAME: dbuser
+      SPRING_DATASOURCE_PASSWORD: mySqlPassword
     ports:
       - '8080:8080'
     depends_on:
-      - mysql
+      - mysqldb

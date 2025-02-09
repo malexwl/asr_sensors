@@ -4,5 +4,5 @@ import com.asr.sensors.db.model.SensorUnit;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SensorUnitRepository  extends JpaRepository<SensorUnit, Long> {
-    public SensorUnit findByName(String name);
+    SensorUnit findByName(String name);
 }
